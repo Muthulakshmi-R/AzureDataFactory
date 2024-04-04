@@ -1,0 +1,17 @@
+{
+	"name": "DynamicDestination",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LinkedService_Muthulakshmi1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "DynamicSource",
+			"table": "tblmapping"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

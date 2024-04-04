@@ -1,0 +1,17 @@
+{
+	"name": "Day4Destination1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Day4_LinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "Muthulakshmi",
+			"table": "Day4Destination"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

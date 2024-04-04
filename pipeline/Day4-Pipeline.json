@@ -1,0 +1,100 @@
+{
+	"name": "Day4-Pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Data flow1",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "Script2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataflow": {
+						"referenceName": "dataflow1",
+						"type": "DataFlowReference"
+					},
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					},
+					"traceLevel": "Fine"
+				}
+			},
+			{
+				"name": "Script2",
+				"type": "Script",
+				"dependsOn": [
+					{
+						"activity": "Script3",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "Day4_LinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "CREATE TABLE Muthulakshmi.Day4Destination(\nProductID INTEGER,\nName VARCHAR(100),\nProductNumber VARCHAR(100),\nColor VARCHAR(100),\nStandardCost DECIMAL(10,2),\nListPrice DECIMAL(10,2),\nSize VARCHAR(100),\nWeight DECIMAL(10,2),\nProductCategoryID INTEGER,\nProductModelID INTEGER,\nSellStartDate VARCHAR(100),\nSellEndDate VARCHAR(100),\nDiscontinuedDate VARCHAR(100),\nThumbNailPhoto VARBINARY(4000),\nThumbnailPhotoFileName VARCHAR(100),\nrowguid VARCHAR(100),\nModifiedDate VARCHAR(100),\nParentProductCategoryID INTEGER,\nstartyear VARCHAR(100),\nRankByID INTEGER,\nunpivotproduct VARCHAR(100),\nunpivot2 VARCHAR(100)\n)"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			},
+			{
+				"name": "Script3",
+				"type": "Script",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"linkedServiceName": {
+					"referenceName": "Day4_LinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"typeProperties": {
+					"scripts": [
+						{
+							"type": "Query",
+							"text": "DROP TABLE IF EXISTS Muthulakshmi.Day4Destination"
+						}
+					],
+					"scriptBlockExecutionTimeout": "02:00:00"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-04-03T23:05:54Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

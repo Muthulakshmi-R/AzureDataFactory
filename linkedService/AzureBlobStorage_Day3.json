@@ -1,0 +1,16 @@
+{
+	"name": "AzureBlobStorage_Day3",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": "DefaultEndpointsProtocol=https;AccountName=adftrainingadls2024;",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI3MTM2NDJmNC03MTNkLTQyOWYtOTM4OC1mM2E2ODJiNzA0MmQiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "SelfHostedIR-Muthulakshmi",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

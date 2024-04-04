@@ -1,0 +1,17 @@
+{
+	"name": "Database_Muthulakshmi1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LinkedService_Muthulakshmi1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "Muthulakshmi",
+			"table": "Customer"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
