@@ -1,0 +1,128 @@
+{
+	"name": "AssessmentDataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AutoDataset",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "CustomerFemale",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "select1"
+				},
+				{
+					"name": "split1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          CustomerKey as integer,",
+				"          GeographyKey as integer,",
+				"          CustomerAlternateKey as string,",
+				"          Title as string,",
+				"          FirstName as string,",
+				"          MiddleName as string,",
+				"          LastName as string,",
+				"          NameStyle as boolean,",
+				"          BirthDate as date,",
+				"          MaritalStatus as string,",
+				"          Suffix as string,",
+				"          Gender as string,",
+				"          EmailAddress as string,",
+				"          YearlyIncome as decimal(19,4),",
+				"          TotalChildren as integer,",
+				"          NumberChildrenAtHome as integer,",
+				"          EnglishEducation as string,",
+				"          SpanishEducation as string,",
+				"          FrenchEducation as string,",
+				"          EnglishOccupation as string,",
+				"          SpanishOccupation as string,",
+				"          FrenchOccupation as string,",
+				"          HouseOwnerFlag as string,",
+				"          NumberCarsOwned as integer,",
+				"          AddressLine1 as string,",
+				"          AddressLine2 as string,",
+				"          Phone as string,",
+				"          DateFirstPurchase as date,",
+				"          CommuteDistance as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
+				"source1 derive({Full Name} = iifNull(FirstName, '') +' '+  iifNull(MiddleName, '') + ' '+ iifNull(LastName, '')\r",
+				"\r",
+				") ~> derivedColumn1",
+				"derivedColumn1 select(mapColumn(",
+				"          CustomerKey,",
+				"          GeographyKey,",
+				"          CustomerAlternateKey,",
+				"          Title,",
+				"          NameStyle,",
+				"          BirthDate,",
+				"          MaritalStatus,",
+				"          Suffix,",
+				"          Gender,",
+				"          EmailAddress,",
+				"          YearlyIncome,",
+				"          TotalChildren,",
+				"          NumberChildrenAtHome,",
+				"          EnglishEducation,",
+				"          SpanishEducation,",
+				"          FrenchEducation,",
+				"          EnglishOccupation,",
+				"          SpanishOccupation,",
+				"          FrenchOccupation,",
+				"          HouseOwnerFlag,",
+				"          NumberCarsOwned,",
+				"          AddressLine1,",
+				"          AddressLine2,",
+				"          Phone,",
+				"          DateFirstPurchase,",
+				"          CommuteDistance,",
+				"          {Full Name}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 split(Gender != 'F',",
+				"     Gender !='M',",
+				"     disjoint: false) ~> split1@(CustomerMale, CustomerFemale)",
+				"split1@CustomerMale sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1",
+				"split1@CustomerFemale sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
+			]
+		}
+	}
+}
