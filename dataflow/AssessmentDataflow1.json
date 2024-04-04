@@ -14,6 +14,10 @@
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "CustomerMale",
+						"type": "DatasetReference"
+					},
 					"name": "sink1"
 				},
 				{
@@ -110,8 +114,14 @@
 				"     disjoint: false) ~> split1@(CustomerMale, CustomerFemale)",
 				"split1@CustomerMale sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
 				"split1@CustomerFemale sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",

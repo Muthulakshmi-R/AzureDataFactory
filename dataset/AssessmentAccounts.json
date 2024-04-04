@@ -1,0 +1,16 @@
+{
+	"name": "AssessmentAccounts",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LinkedService_Muthulakshmi1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "Muthulakshmi1",
+			"table": "Accounts"
+		}
+	}
+}

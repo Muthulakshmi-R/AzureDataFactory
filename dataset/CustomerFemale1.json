@@ -1,0 +1,16 @@
+{
+	"name": "CustomerFemale1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Day4_LinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "Muthulakshmi1",
+			"table": "CustomerFemale"
+		}
+	}
+}
