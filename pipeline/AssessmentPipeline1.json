@@ -229,7 +229,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "CustomerMale",
+						"referenceName": "CustomerMale1",
 						"type": "DatasetReference"
 					}
 				],

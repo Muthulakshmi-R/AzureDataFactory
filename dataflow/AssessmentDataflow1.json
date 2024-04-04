@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "CustomerMale",
+						"referenceName": "CustomerMale1",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
@@ -75,9 +75,7 @@
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> source1",
-				"source1 derive({Full Name} = iifNull(FirstName, '') +' '+  iifNull(MiddleName, '') + ' '+ iifNull(LastName, '')\r",
-				"\r",
-				") ~> derivedColumn1",
+				"source1 derive({Full Name} = iifNull(FirstName, '') +' '+  iifNull(MiddleName, '') + ' '+ iifNull(LastName, '')) ~> derivedColumn1",
 				"derivedColumn1 select(mapColumn(",
 				"          CustomerKey,",
 				"          GeographyKey,",
